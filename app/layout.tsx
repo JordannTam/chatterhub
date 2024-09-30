@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ClerkProvider, SignOutButton } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
+import { ModalProvider } from "@/components/providers/modal-provider";
 
 
 const geistSans = localFont({
@@ -40,6 +41,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="discord-theme"
             >
+            <ModalProvider />
             {children}
             </ThemeProvider>
         </body>

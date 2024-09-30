@@ -24,6 +24,8 @@ export async function POST(req:Request) {
       [profile.id, 'ADMIN', server.id]
     )
 
+    client.release()
+
     return NextResponse.json(server)
 
     

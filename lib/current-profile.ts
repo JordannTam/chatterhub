@@ -11,6 +11,7 @@ export const currentProfile = async () => {
   const client = await pool.connect()
   const result = await client.query('SELECT * FROM profile WHERE userId = $1', [userId])
   const profile = result.rows[0]
+  client.release()
 
   return profile
 

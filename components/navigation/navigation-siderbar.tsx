@@ -16,8 +16,10 @@ export const NavigationSidebar = async () => {
   }
 
   const client = await pool.connect()
-  const result = await client.query('SELECT * FROM server WHERE profileId = $1', [profile.id])
+  const result = await client.query('SELECT s.id, s.name, s.imageurl, s.invitecode, s.profileid, s.createdat, s.updatedat FROM server s join member m on s.id = m.serverid WHERE m.profileId = $1', [profile.id])
   const servers = result.rows
+  
+  client.release()
   return (
     <div
       className="space-y-4 flex flex-col items-center h-full text-primary w-full dark:bg-[#1E1F22] py-3">

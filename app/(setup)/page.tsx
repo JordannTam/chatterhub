@@ -8,12 +8,14 @@ const SetupPage = async () => {
   const client = await pool.connect()
 
     
-  const result = await client.query('SELECT * FROM server WHERE profileId = $1', [profile.id])
+  const result = await client.query('SELECT * FROM member WHERE profileId = $1', [profile.id])
   const server = result.rows[0]
   client.release()
 
   if (server){
-    return redirect(`/servers/${server.id}`)
+    console.log("server", server);
+    
+    return redirect(`/servers/${server.serverid}`)
   }
 
   return <InitialModal />

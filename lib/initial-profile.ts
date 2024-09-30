@@ -14,7 +14,6 @@ export const initialProfile = async () => {
   try {
 
     const res = await client.query('SELECT * from profile where userId = $1', [user.id]);
-    console.log(user.id, res.rows[0]);
     
     const profile = res.rows[0]
     if (profile) {
